@@ -26,7 +26,7 @@
  * Math class: https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_methods_system_math.htm
  * Classes: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_understanding.htm
  *
- * @author Your Name
+ * @author May Keam
  */
 
 public with sharing class ClassesObjectsMethods {
@@ -40,17 +40,21 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<String> practiceStringMethods() {
         // Initialize a String with 'Hello, Salesforce!'
-        
+        String hello = 'Hello, Salesforce!';
+        Integer len = hello.length();
+        String sLen = String.valueOf(len);
+        String sub = hello.substring(0,5);
+        String lower = hello.toLowerCase();
         // Get the length of the String        
         // Get a substring of the String of the first 5 characters
         // Convert the String to lower case
-        
+        List<String> combined = new List<String>{sLen, sub, lower};
         // Return the list with the string data
         // In the first position add the string length
         // In the second position add the substring
         // In the third position add the string in lower case
 
-        return null; // Replace null with the variable you used to store the result
+        return combined; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -62,14 +66,19 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<Boolean> checkStringContent(String input) {
         // Initialize a list to store the results
-        
+        List<Boolean> checkString = new List<Boolean>();
         // Check if the string starts with 'Sales'
-        
+        Boolean start = input.startsWith('Sales');
         // Check if the string ends with 'Force'
-        
+        Boolean ends = input.endsWith('Force');
         // Check if the string contains 'Awesome'
-        
-        return null; // Replace null with the variable you used to store the result
+        Boolean contains = input.contains('Awesome');
+
+        checkString.add(Start);
+        checkString.add(ends);
+        checkString.add(contains);
+
+        return checkString; // Replace null with the variable you used to store the result
     }
 
     /**
