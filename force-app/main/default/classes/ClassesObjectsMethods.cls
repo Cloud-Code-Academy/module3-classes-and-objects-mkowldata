@@ -41,18 +41,22 @@ public with sharing class ClassesObjectsMethods {
     public static List<String> practiceStringMethods() {
         // Initialize a String with 'Hello, Salesforce!'
         String hello = 'Hello, Salesforce!';
+               
+        // Get the length of the String
         Integer len = hello.length();
-        String sLen = String.valueOf(len);
-        String sub = hello.substring(0,5);
-        String lower = hello.toLowerCase();
-        // Get the length of the String        
+        String sLen = String.valueOf(len);        
+        
         // Get a substring of the String of the first 5 characters
+        String sub = hello.substring(0,5);
+        
         // Convert the String to lower case
-        List<String> combined = new List<String>{sLen, sub, lower};
+        String lower = hello.toLowerCase();
+
         // Return the list with the string data
         // In the first position add the string length
         // In the second position add the substring
         // In the third position add the string in lower case
+        List<String> combined = new List<String>{sLen, sub, lower};
 
         return combined; // Replace null with the variable you used to store the result
     }
@@ -67,10 +71,13 @@ public with sharing class ClassesObjectsMethods {
     public static List<Boolean> checkStringContent(String input) {
         // Initialize a list to store the results
         List<Boolean> checkString = new List<Boolean>();
+        
         // Check if the string starts with 'Sales'
         Boolean start = input.startsWith('Sales');
+        
         // Check if the string ends with 'Force'
         Boolean ends = input.endsWith('Force');
+        
         // Check if the string contains 'Awesome'
         Boolean contains = input.contains('Awesome');
 
@@ -89,16 +96,21 @@ public with sharing class ClassesObjectsMethods {
      * @return A string consisting of only unique words from the input sentence.
      */
     public static String removeDuplicateWords(String sentence) {
+        
         // Split the sentence into words
-
+        sentence.split(' ');
+        
         // Create a set to store the unique words
-
+        Set<String> stringList = new Set<String>();
+        
         // Add each word to the set
-
+        stringList.addAll(sentence.split(' '));
+       
         // Join the unique words back into a sentence
+        String newSentence = String.join(stringList, ' ');
 
         // Return the sentence with unique words
-        return null; // Replace null with the variable you used to store the result
+        return newSentence; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -111,16 +123,21 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Integer countVowels(String str) {
         // Initialize the result Integer
+        Integer numberOfVowels = 0;
+        for ( Integer i = 0; i < str.length(); i++) {
 
-        /*
-        for () {
+            String letter = str.substring(i, i+1);
             // get individual characters from the string - hint use substring or split
-            // check if the character is a vowel
-            // if it is a vowel, increment the result Integer
-        }
-        */
 
-        return null; // Replace null with the variable you used to store the result
+            if(letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u'){
+                // check if the character is a vowel
+                
+                numberOfVowels ++;
+                // if it is a vowel, increment the result Integer
+            
+            }
+        }
+        return numberOfVowels; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -135,16 +152,21 @@ public with sharing class ClassesObjectsMethods {
         List<String> scientistNames = new List<String>{'Tim Berners-Lee', 'Alan Turing', 'Grace Hopper', 'Donald Knuth', 'Guido van Rossum', 'Ken Thompson', 'Stephen Hawking'};
 
         // The variable to store the concatenated string
-
+        String combined = '';
+        List<String> gNames = new List<String>();
+        
         // Loop through the list of scientists' names
-
-            // If the name doesn't contain the letter 'G', skip this iteration
-
-            // Add the name to the result string, followed by a comma
-
+        for( String name : scientistNames){
+            if( name.containsNone('Gg')){
+                continue;
+            }
+            else gNames.add(name);
+            combined = String.join(gNames,',');
+        }
+        // If the name doesn't contain the letter 'G', skip this iteration
+        // Add the name to the result string, followed by a comma
         // Remove the last comma from the result string
-
-        return null; // Replace null with the variable you used to store the result
+        return combined; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -157,11 +179,12 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Double calculateDifferenceOfSquares(Double a, Double b) {
         // Square the input numbers using the Math.pow() function
-
+        Double firstNum = Math.pow(a, 2);
+        Double secondNum = Math.pow(b, 2);
         // Calculate the absolute difference using Math.abs() function
-
+        Double abValue = Math.abs(secondNum - firstNum);
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        return abValue; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -172,9 +195,11 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Integer generateRandomNumber() {
         // Use Math class to generate number between 50 and 100
-
+        Integer min = 50;
+        Integer max = 100;
         // Return the random integer
-        return null; // Replace null with the variable you used to store the result
+        Integer randomNum = (Integer)(Math.random() * ( max - min + 1 )) + min;
+        return randomNum; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -185,11 +210,12 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String getCurrentDate() {
         // Get the todays date
-
+        datetime todaysDate = datetime.now();
         // Format the current date
-
+        String currentDT = todaysDate.format();
+        String currentDateString = currentDT.substringBefore(',');
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        return currentDateString; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -201,13 +227,23 @@ public with sharing class ClassesObjectsMethods {
     public static String getDayOfWeek(DateTime dt) {
         // Define a map of day of the week as a key and day number as the value
         // Monday = 1, Tuesday = 2, etc.
-
+        
+        Map <String, Integer> dayOfWeekToDay = new Map <String, Integer>{
+            'Monday'=>1, 
+            'Tuesday'=>2, 
+            'Wedday'=>3, 
+            'Thurday'=>4, 
+            'Friday'=>5, 
+            'Saturday'=>6, 
+            'Sunday'=>7
+        };
         // Get the day name using .format('EEEE');
-
+        String day = dt.format('EEEE');
         // Get the day number from the map using the day name
-
+        Integer dayOfWeek = dayOfWeekToDay.get(day);
         // Return the result as a string
-        return null; // Replace null with the variable you used to store the result
+        String DOW = String.valueOf(dayOfWeek);
+        return DOW; // Replace null with the variable you used to store the result
     }
 
 
