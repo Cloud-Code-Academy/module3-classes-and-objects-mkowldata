@@ -427,9 +427,9 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Person createPerson(String name, Integer age) {
         // Create a new instance of the Person class using the provided name and age
-        
+        Person human2 = new Person(name, age);
         // Return the new instance of the Person class
-        return null; // Replace null with the variable you used to store the result
+        return human2; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -442,15 +442,18 @@ public with sharing class ClassesObjectsMethods {
      * @return A list of new Person objects.
      */
     public static List<Person> createMultiplePersons(List<String> names, Integer age) {
+        
+        List<Person> folks = new List<Person>();
 
         // Loop through each name in the provided list of names
+        for( String name : names ){
+            Person human3 = new Person(name, age);
+            folks.add(human3);
+        }
             // Create a new Person object for each name
-            
             // Add the new Person object to the list of Person objects
-        
-        
         // Return the list of Person objects
-        return null; // Replace null with the variable you used to store the result
+        return folks; // Replace null with the variable you used to store the result
     }
 
 
@@ -465,6 +468,18 @@ public with sharing class ClassesObjectsMethods {
      * @return The Person object of the older person.
      */
     public static Person getOlderPerson(Person person1, Person person2) {
-        return null; // Replace null with the variable you used to store the result
+        Person olderPerson;
+        Integer person1Age = person1.getAge();
+        Integer person2Age = person2.getAge();
+
+        if( person1Age > person2Age ){
+            olderPerson = person1;
+        } 
+        else if ( person1Age < person2Age ){
+            olderPerson = person2;
+        }
+        else { olderPerson = Math.random() < 0.5 ? person1 : person2;
+        }
+        return olderPerson; // Replace null with the variable you used to store the result
     }
 }
