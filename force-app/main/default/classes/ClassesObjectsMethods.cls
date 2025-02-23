@@ -257,10 +257,14 @@ public with sharing class ClassesObjectsMethods {
      * @return The a positive number years between the two dates, or null if either date is null.
      */
     public static Integer calculateYearDifference(Date d1, Date d2) {
-
+        if(d1 == null || d2 == null){
+            return null;
+        }
+        Integer y1 = d1.year();
+        Integer y2 = d2.year();
         // Subtract the difference in years
-
-        return null; // Replace null with the variable you used to store the result
+        Integer diff = y2-y1;
+        return diff; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -273,18 +277,24 @@ public with sharing class ClassesObjectsMethods {
     public class Book {
         // Declare three public instance variables - title, author, pages
         // title
+        public String title;
         // author
+        public String author;
         // pages
+        public Integer pages;
     
         // Book constructor to initialize the title and author
-        public Book() {
+        public Book(String title, String author) {
             // Initialize the title and author
+            this.title = title;
+            this.author = author;
         }
     
         // Method that returns the details of the book
         public String getBookDetails() {
             // return A string containing the details of the book in the format "Title: <title>, Author: <author>"
-            return null; // Replace null with the variable you used to store the result
+        String bookDetails = ('Title: ' + this.title + ', ' + 'Author: ' + this.author);
+            return bookDetails; // Replace null with the variable you used to store the result
         }
     }
     
@@ -297,11 +307,11 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String createAndGetBookDetails() {
         // Create a Book object with title "A Brief History of Time" and author "Stephen Hawking"
-
+        Book theBook = new Book('A Brief History of Time', 'Stephen Hawking');
         // Call the getBookDetails method on the book object to get the details of the book
-
+        String myBook = theBook.getBookDetails();
         // Return the details of the book
-        return null; // Replace null with the variable you used to store the result
+        return myBook; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -315,18 +325,25 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<Book> generateBookList(Book myBook1) {
         // Create a list of books
-
+        List<Book> collection = new List<Book>();
+        
         // Update the title and author of myBook1
-
+        myBook1.title = ('Harry Potter and the Chamber of Secrets');
+        myBook1.author = ('J.K. Rowling');
+        
         // Update the pages for myBook1 to 352
+        myBook1.pages = (352);
 
         // Create a new Book object with title "A Brief History of Time" and author "Stephen Hawking"
-
+        Book myBook2 = new Book('A Brief History of Time', 'Stephen Hawking');
+        
         // Update the pages for A Brief History of Time to 256
+        myBook2.pages = (256);
 
         // Add the book to the list
-        
-        return null; // Replace null with the variable you used to store the result      
+        collection.add(myBook1);
+        Collection.add(myBook2);
+        return collection; // Replace null with the variable you used to store the result      
     }
 
 
@@ -339,20 +356,38 @@ public with sharing class ClassesObjectsMethods {
      */
     public class Person {
         // Declare private two instance variables - (TEXT) name and (Number) age
+        private String name;
+        private Integer age;
         
         // Constructor to initialize the name and age
+        public Person(String name, Integer age){
+            this.name = name;
+            this.age = age;
+        }
     
-        // Method introduceYourself that returns the details of the person        
+        // Method introduceYourself that returns the details of the person  
+        public String introduceYourself(){
+            String greeting = ('Hello, my name is ' + this.name + ' and I am ' + this.age + ' years old.');
+            return greeting;
+        }
         // Return a string in the format "Hello, my name is <name> and I am <age> years old."
         // For example, introduceYourself() should return a string like "Hello, my name is John Doe and I am 28 years old."
-
         // Getter method that returns the name of the person
-
+        public String getName(){
+            return name;
+        } 
         // Getter method that returns the age of the person
-
+        public Integer getAge(){
+            return age;
+        }
         // Setter method that sets the name of the person
-
+        public void setName(String a){
+            name = a;
+        }
         // Setter method that sets the age of the person
+        public void setAge(Integer i){
+            age = i;
+        }
     }
 
     /**
@@ -366,14 +401,21 @@ public with sharing class ClassesObjectsMethods {
         List<String> results = new List<String>();
         // Create a new instance of Person class
         // Name the person 'John Doe' and set the age to 28
-
+        Person human = new Person('John Doe', 28);
+    
         // Add the details of the person using the introduceYourself method
+        String intro = human.introduceYourself();
+        results.add(intro);
 
         // Get the name of the person using the getter method and add it to the list
+        results.add(human.getName());
 
         // Get the age of the person using the getter method and add it to the list
-        
-        return null; // Replace null with the variable you used to store the result
+        Integer ageString = human.getAge();
+        String personAge = String.valueOf(ageString);
+        results.add(personAge);
+
+        return results; // Replace null with the variable you used to store the result
     }
 
     /**
